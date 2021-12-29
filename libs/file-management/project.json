@@ -1,0 +1,34 @@
+{
+  "root": "libs/file-management",
+  "sourceRoot": "libs/file-management/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/file-management",
+        "tsConfig": "libs/file-management/tsconfig.lib.json",
+        "packageJson": "libs/file-management/package.json",
+        "main": "libs/file-management/src/index.ts",
+        "assets": ["libs/file-management/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/file-management/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/file-management"],
+      "options": {
+        "jestConfig": "libs/file-management/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,34 @@
+{
+  "root": "libs/messaging/kafka-management",
+  "sourceRoot": "libs/messaging/kafka-management/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/messaging/kafka-management",
+        "tsConfig": "libs/messaging/kafka-management/tsconfig.lib.json",
+        "packageJson": "libs/messaging/kafka-management/package.json",
+        "main": "libs/messaging/kafka-management/src/index.ts",
+        "assets": ["libs/messaging/kafka-management/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/messaging/kafka-management/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/messaging/kafka-management"],
+      "options": {
+        "jestConfig": "libs/messaging/kafka-management/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

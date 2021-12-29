@@ -14,7 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@chatato/image-processing": ["libs/image-processing/src/index.ts"],
+      "@kryptand/file-management": ["libs/file-management/src/index.ts"],
+      "@kryptand/messaging/kafka-management": [
+        "libs/messaging/kafka-management/src/index.ts"
+      ],
+      "@kryptand/redis-caching": ["libs/util/redis-caching/src/index.ts"],
+      "@kryptand/request-extensions": ["libs/request-extensions/src/index.ts"],
+      "@kryptand/typeorm-extensions": ["libs/typeorm-extensions/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

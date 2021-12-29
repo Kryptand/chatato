@@ -1,0 +1,34 @@
+{
+  "root": "libs/request-extensions",
+  "sourceRoot": "libs/request-extensions/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/request-extensions/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/request-extensions"],
+      "options": {
+        "jestConfig": "libs/request-extensions/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/request-extensions",
+        "tsConfig": "libs/request-extensions/tsconfig.lib.json",
+        "packageJson": "libs/request-extensions/package.json",
+        "main": "libs/request-extensions/src/index.ts",
+        "assets": ["libs/request-extensions/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,52 @@
+{
+  "root": "apps/message-sender",
+  "sourceRoot": "apps/message-sender/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/message-sender",
+        "main": "apps/message-sender/src/main.ts",
+        "tsConfig": "apps/message-sender/tsconfig.app.json",
+        "assets": ["apps/message-sender/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/message-sender/src/environments/environment.ts",
+              "with": "apps/message-sender/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "message-sender:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/message-sender/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/message-sender"],
+      "options": {
+        "jestConfig": "apps/message-sender/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,34 @@
+{
+  "root": "libs/util/redis-caching",
+  "sourceRoot": "libs/util/redis-caching/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/util/redis-caching/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/util/redis-caching"],
+      "options": {
+        "jestConfig": "libs/util/redis-caching/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/util/redis-caching",
+        "tsConfig": "libs/util/redis-caching/tsconfig.lib.json",
+        "packageJson": "libs/util/redis-caching/package.json",
+        "main": "libs/util/redis-caching/src/index.ts",
+        "assets": ["libs/util/redis-caching/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

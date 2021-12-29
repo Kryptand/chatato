@@ -1,6 +1,18 @@
 {
   "version": 2,
   "projects": {
-    "chatter": "apps/chatter"
+    "activity": "apps/activity",
+    "authentication": "apps/authentication",
+    "avatar": "apps/avatar",
+    "chatter": "apps/chatter",
+    "contact": "apps/contact",
+    "file-management": "libs/file-management",
+    "image-processing": "libs/image-processing",
+    "image-processor": "apps/image-processor",
+    "message-sender": "apps/message-sender",
+    "messaging-kafka-management": "libs/messaging/kafka-management",
+    "request-extensions": "libs/request-extensions",
+    "typeorm-extensions": "libs/typeorm-extensions",
+    "util-redis-caching": "libs/util/redis-caching"
   }
 }

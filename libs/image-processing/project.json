@@ -1,0 +1,23 @@
+{
+  "root": "libs/image-processing",
+  "sourceRoot": "libs/image-processing/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/image-processing/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/image-processing"],
+      "options": {
+        "jestConfig": "libs/image-processing/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

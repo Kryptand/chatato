@@ -1,0 +1,34 @@
+{
+  "root": "libs/typeorm-extensions",
+  "sourceRoot": "libs/typeorm-extensions/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/typeorm-extensions/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/typeorm-extensions"],
+      "options": {
+        "jestConfig": "libs/typeorm-extensions/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/typeorm-extensions",
+        "tsConfig": "libs/typeorm-extensions/tsconfig.lib.json",
+        "packageJson": "libs/typeorm-extensions/package.json",
+        "main": "libs/typeorm-extensions/src/index.ts",
+        "assets": ["libs/typeorm-extensions/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

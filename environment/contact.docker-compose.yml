@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+  contact-redis:
+    container_name: contact_cache
+    image: 'redis:alpine'
+    networks:
+      - contact
+    hostname: redis
+    ports:
+      - '${CONTACT_REDIS_PORT}:6379'
+
+  contact-postgres:
+    container_name: contact_persistence
+    image: 'postgres:latest'
+    ports:
+      - "${CONTACT_DB_PORT}:5432"
+    volumes:
+      - '${CONTACT_DATA_PATH}:/data/postgres'
+    environment:
+      POSTGRES_USER: ${CONTACT_DB_USER}
+      POSTGRES_PASSWORD: ${CONTACT_DB_PW}
+      POSTGRES_DB: ${CONTACT_DB_NAME}
+    networks:
+      - contact
+
+  contact-pgadmin:
+    links:
+      - contact-postgres:postgres
+    container_name: contact_pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "${CONTACT_DB_ADMIN_PORT}:80"
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      - contact
+networks:
+  contact:
