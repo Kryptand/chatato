@@ -8,13 +8,12 @@ import {
 export class AvatarImageProcessorService {
   constructor(private imageProcessor: AbstractImageProcessorService) {}
   async processImages(image) {
-    const buffer = image;
     const smallImage = await this.imageProcessor.createImageAtSize(
-      buffer,
+      image,
       Sizes.SMALL
     );
     const largeImage = await this.imageProcessor.createImageAtSize(
-      buffer,
+      image,
       Sizes.LARGE
     );
     return { smallImage, largeImage };

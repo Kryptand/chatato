@@ -16,10 +16,11 @@ async function bootstrap() {
       transport: Transport.KAFKA,
       options: {
         client: {
+          clientId: 'image-processor',
           brokers: ['localhost:29092'],
         },
         consumer: {
-          groupId: 'my-kafka-consumer',
+          groupId: 'avatar-image-processor-group',
         },
       },
     }

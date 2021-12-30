@@ -4,3 +4,9 @@ export enum Sizes {
   LARGE = 1000,
   EXTRALARGE = 2000,
 }
+export enum SizeTextRepresentation{
+  SMALL = 's',
+  MEDIUM = 'm',
+  LARGE = 'l',
+  EXTRALARGE = 'xl',
+}

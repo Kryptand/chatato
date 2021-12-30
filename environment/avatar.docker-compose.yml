@@ -11,6 +11,7 @@ services:
       - user-avatar
     ports:
       - '${USER_AVATAR_MINIO_PORT}:9000'
+      - '${USER_AVATAR_MINIO_CONSOLE_PORT}:9001'
     environment:
       MINIO_ACCESS_KEY: ${USER_AVATAR_MINIO_ACCESS_KEY}
       MINIO_SECRET_KEY: ${USER_AVATAR_MINIO_SECRET_KEY}
@@ -20,7 +21,7 @@ services:
       MINIO_CACHE_AFTER: 3
       MINIO_CACHE_WATERMARK_LOW: 70
       MINIO_CACHE_WATERMARK_HIGH: 90
-    command: server /data
+    command: minio server --console-address :9001 /data
 
   avatar-minio-client:
     image: minio/mc
@@ -32,10 +33,10 @@ services:
       - avatar-minio-server
     entrypoint: >
       /bin/sh -c "
-      /usr/bin/mc config host add myminio http://minio-server:9000 ${USER_AVATAR_MINIO_ACCESS_KEY} ${USER_AVATAR_MINIO_SECRET_KEY};
-      /usr/bin/mc mb myminio/USER_AVATAR-bucket;
+      /usr/bin/mc config host add myminio http://avatar-minio-server:9000 ${USER_AVATAR_MINIO_ACCESS_KEY} ${USER_AVATAR_MINIO_SECRET_KEY};
+      /usr/bin/mc mb myminio/avatar-bucket;
       echo 'my content' > testfile.txt;
-      /usr/bin/mc cp myfile.txt myminio/USER_AVATAR-bucket;
+      /usr/bin/mc cp myfile.txt myminio/avatar-bucket;
       exit 0;
       "
   avatar-redis:

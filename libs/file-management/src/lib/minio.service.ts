@@ -112,6 +112,7 @@ export class MinioAdapterService extends AbstractExternalFileService {
     if (!this.isBootstrapped) {
       this.bootstrapClient();
       this.isBootstrapped = true;
+      console.debug(this.currentBucket);
     }
   }
 
@@ -122,6 +123,7 @@ export class MinioAdapterService extends AbstractExternalFileService {
   }
 
   bootstrapClient() {
+
     this.client = new Minio.Client({
       endPoint: this.config.get(this.key + '_MINIO_ENDPOINT'),
       port: parseInt(this.config.get(this.key + '_MINIO_PORT'), 10),
@@ -129,7 +131,18 @@ export class MinioAdapterService extends AbstractExternalFileService {
       accessKey: this.config.get(this.key + '_MINIO_ACCESS_KEY'),
       secretKey: this.config.get(this.key + '_MINIO_SECRET_KEY'),
     });
-    this.currentBucket = this.config.get(this.key + '_MINIO_BUCKET');
+    console.debug({
+      endPoint: this.config.get(this.key + '_MINIO_ENDPOINT'),
+      port: parseInt(this.config.get(this.key + '_MINIO_PORT'), 10),
+      useSSL: this.config.get(this.key + '_MINIO_USE_SSL') === 'true',
+      accessKey: this.config.get(this.key + '_MINIO_ACCESS_KEY'),
+      secretKey: this.config.get(this.key + '_MINIO_SECRET_KEY'),
+      bucket: this.config.get(this.key + '_MINIO_BUCKET_NAME'),
+    });
+    this.currentBucket = this.config.get(this.key + '_MINIO_BUCKET_NAME');
+    console.debug(
+      '...bootstrapped minio client for bucket: ' + this.currentBucket
+    );
   }
   public setCurrentBucket(bucketName: string) {
     if (!bucketName) {

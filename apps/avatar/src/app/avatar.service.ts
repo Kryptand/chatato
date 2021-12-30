@@ -44,6 +44,9 @@ export class AvatarService {
   }
 
   async uploadImage(userId, file) {
-    this.imageJobsService.putImageToMessagingService({ userId, image: file });
+    return this.imageJobsService.putImageToMessagingService({
+      userId,
+      image: file,
+    });
   }
 }

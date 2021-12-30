@@ -15,6 +15,6 @@ export class CreateImageJobsService {
     this.client.close();
   }
   putImageToMessagingService(image) {
-    this.client.send(TOPIC_NAME, image).subscribe();
+    return this.client.send(TOPIC_NAME, image);
   }
 }

@@ -1,6 +1,3 @@
--> Imageprocessor does not process image - length is always 0 after sharp?!
 -> Authentication fehlt noch komplett
 -> UserManagement fehlt auch noch komplett
 -> MessageSender Services fehlen noch
--> ImageProcessor + MessageSender müssen noch skalieren (Wie kann sichergestellt werden, dass nur ein Processor ein Image bearbeitet und nicht alle das gleiche Bild)
-

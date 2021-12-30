@@ -27,7 +27,8 @@
     "rxjs": "^7.0.0",
     "sharp": "^0.29.1",
     "tslib": "^2.0.0",
-    "typeorm": "^0.2.41"
+    "typeorm": "^0.2.41",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@nestjs/schematics": "^8.0.0",

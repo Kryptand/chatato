@@ -33,9 +33,9 @@ services:
     entrypoint: >
       /bin/sh -c "
       /usr/bin/mc config host add myminio http://minio-server:9000 ${MESSAGING_MINIO_ACCESS_KEY} ${MESSAGING_MINIO_SECRET_KEY};
-      /usr/bin/mc mb myminio/MESSAGING-bucket;
+      /usr/bin/mc mb myminio/messaging-bucket;
       echo 'my content' > testfile.txt;
-      /usr/bin/mc cp myfile.txt myminio/MESSAGING-bucket;
+      /usr/bin/mc cp myfile.txt myminio/messaging-bucket;
       exit 0;
       "
   messaging-redis:
