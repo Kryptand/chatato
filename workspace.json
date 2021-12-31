@@ -13,6 +13,7 @@
     "messaging-kafka-management": "libs/messaging/kafka-management",
     "request-extensions": "libs/request-extensions",
     "typeorm-extensions": "libs/typeorm-extensions",
+    "user-management": "apps/user-management",
     "util-redis-caching": "libs/util/redis-caching"
   }
 }
