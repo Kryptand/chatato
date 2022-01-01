@@ -5,12 +5,14 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { LoginUserDto, RegisterUserDto, UpdateUserDto } from './user.dto';
 import { AuthenticationService } from './authentication.service';
+import { ActivityProducerService } from '@chatato/activity-producer';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-    private authenticateService: AuthenticationService
+    private authenticateService: AuthenticationService,
+    private readonly activityService: ActivityProducerService
   ) {}
   validateToken(token: string): Promise<User> {
     return this.authenticateService.validateToken(token);
@@ -71,7 +73,9 @@ export class UserService {
       throw new Error('User already exists');
     }
     const hashedUser = await this.hashPassword(user);
-    return this.userRepository.save(hashedUser);
+    const newUser = await this.userRepository.create(hashedUser);
+    await this.activityService.createInitialActivity(newUser.id);
+    return newUser;
   }
 
   private async hashPassword(user: RegisterUserDto) {

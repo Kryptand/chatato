@@ -1,14 +1,19 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { RedisCachingModule } from '@kryptand/redis-caching';
 import { ConfigModule } from '@nestjs/config';
 import { Contact } from './contact.entity';
 import { TypeormPostgresModule } from '@kryptand/typeorm-extensions';
 import { ContactModule } from './contact.module';
+import {
+  ActivityMiddleware,
+  ActivityProducerModule,
+} from '@chatato/activity-producer';
 
 const SERVICE_IDENTIFIER = 'CONTACT';
 
 @Module({
   imports: [
+    ActivityProducerModule,
     ConfigModule.forRoot({
       envFilePath: 'environment/.env',
       isGlobal: true,
@@ -19,4 +24,11 @@ const SERVICE_IDENTIFIER = 'CONTACT';
     ContactModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ActivityMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
+  }
+}

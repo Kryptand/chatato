@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@chatato/activity-producer": ["libs/activity-producer/src/index.ts"],
       "@chatato/auth": ["libs/auth/src/index.ts"],
       "@chatato/image-processing": ["libs/image-processing/src/index.ts"],
       "@kryptand/file-management": ["libs/file-management/src/index.ts"],

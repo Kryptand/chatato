@@ -1,0 +1,23 @@
+{
+  "root": "libs/activity-producer",
+  "sourceRoot": "libs/activity-producer/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/activity-producer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/activity-producer"],
+      "options": {
+        "jestConfig": "libs/activity-producer/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

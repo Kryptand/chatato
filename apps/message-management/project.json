@@ -1,0 +1,52 @@
+{
+  "root": "apps/message-management",
+  "sourceRoot": "apps/message-management/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/message-management",
+        "main": "apps/message-management/src/main.ts",
+        "tsConfig": "apps/message-management/tsconfig.app.json",
+        "assets": ["apps/message-management/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/message-management/src/environments/environment.ts",
+              "with": "apps/message-management/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "message-management:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/message-management/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/message-management"],
+      "options": {
+        "jestConfig": "apps/message-management/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
