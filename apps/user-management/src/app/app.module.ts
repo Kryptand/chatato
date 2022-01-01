@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
+import { User } from './user/user.entity';
+import { RedisCachingModule } from '@kryptand/redis-caching';
+import { TypeormPostgresModule } from '@kryptand/typeorm-extensions';
+import { ConfigModule } from '@nestjs/config';
+import {UserModule} from "./user/user.module";
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
+const USER_SERVICE_IDENTIFIER = 'USER_MANAGEMENT';
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: 'environment/.env',
+      isGlobal: true,
+      cache: true,
+    }),
+    TypeormPostgresModule.forRoot(USER_SERVICE_IDENTIFIER, [User]),
+    RedisCachingModule.forRoot(USER_SERVICE_IDENTIFIER),
+    UserModule,
+  ],
 })
 export class AppModule {}

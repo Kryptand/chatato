@@ -3,29 +3,24 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn, Unique,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
+@Unique(['username','contactSource'])
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column()
-  avatar: string;
+  username: string;
 
   @Column()
-  contactSource: string;
+  contactSource?: string;
 
   @Column()
   password: string;
-
-  @Column()
-  salt: string;
-
-  @Column()
-  role: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -37,77 +32,17 @@ export class User {
   deletedAt: Date;
 
   @Column()
-  resetPasswordToken: string;
+  lastIp?: string;
 
   @Column()
-  resetPasswordExpires: Date;
+  lastUserAgent?: string;
 
   @Column()
-  lastLogin: Date;
+  lastLoginAt?: Date;
 
   @Column()
-  lastIp: string;
+  lastFailedLoginAt?: Date;
 
   @Column()
-  lastUserAgent: string;
-
-  @Column()
-  lastLoginAt: Date;
-
-  @Column()
-  lastLoginIp: string;
-
-  @Column()
-  lastLoginUserAgent: string;
-
-  @Column()
-  lastFailedLogin: Date;
-
-  @Column()
-  lastFailedLoginIp: string;
-
-  @Column()
-  lastFailedLoginUserAgent: string;
-
-  @Column()
-  lastFailedLoginAt: Date;
-
-  @Column()
-  failedLoginCount: number;
-
-  @Column()
-  lastLockedOut: Date;
-
-  @Column()
-  lastLockedOutIp: string;
-
-  @Column()
-  lastLockedOutUserAgent: string;
-
-  @Column()
-  lastLockedOutAt: Date;
-
-  @Column()
-  lockedOutCount: number;
-
-  @Column()
-  lastPasswordChange: Date;
-
-  @Column()
-  lastPasswordChangeIp: string;
-
-  @Column()
-  lastPasswordChangeUserAgent: string;
-
-  @Column()
-  lastPasswordChangeAt: Date;
-
-  @Column()
-  passwordChangeCount: number;
-
-  @Column()
-  lastPasswordReset: Date;
-
-  @Column()
-  lastPasswordResetIp: string;
+  failedLoginCount?: number;
 }

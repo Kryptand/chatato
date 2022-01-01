@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+  user-management-redis:
+    container_name: user-management_cache
+    image: 'redis:alpine'
+    networks:
+      - user-management
+    hostname: redis
+    ports:
+      - '${USER_MANAGEMENT_REDIS_PORT}:6379'
+
+  postgres:
+    container_name: user-management_persistence
+    image: 'postgres:latest'
+    ports:
+      - '${USER_MANAGEMENT_DB_PORT}:5432'
+    volumes:
+      - '${USER_MANAGEMENT_DATA_PATH}:/data/postgres'
+    environment:
+      POSTGRES_USER: ${USER_MANAGEMENT_DB_USER}
+      POSTGRES_PASSWORD: ${USER_MANAGEMENT_DB_PW}
+      POSTGRES_DB: ${USER_MANAGEMENT_DB_NAME}
+    networks:
+      - user-management
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - '${USER_MANAGEMENT_DB_ADMIN_PORT}:80'
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      - user-management
+networks:
+  user-management:

@@ -2,9 +2,8 @@
   "version": 2,
   "projects": {
     "activity": "apps/activity",
-    "authentication": "apps/authentication",
+    "auth": "libs/auth",
     "avatar": "apps/avatar",
-    "chatter": "apps/chatter",
     "contact": "apps/contact",
     "file-management": "libs/file-management",
     "image-processing": "libs/image-processing",

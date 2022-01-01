@@ -1,3 +1,2 @@
--> Authentication fehlt noch komplett
--> UserManagement fehlt auch noch komplett
--> MessageSender Services fehlen noch
+-> MessageManagement + MessageSender
+-> API Gateway
